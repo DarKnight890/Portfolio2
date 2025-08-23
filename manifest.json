@@ -1,0 +1,55 @@
+{
+  "name": "Ankit Kumar - Portfolio",
+  "short_name": "Portfolio",
+  "description": "Cybersecurity Analyst & Digital Guardian Portfolio",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#1a1a2e",
+  "orientation": "any",
+  "categories": ["portfolio", "cybersecurity", "business"],
+  "lang": "en",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' fill='%231a1a2e' rx='24'/%3E%3Ctext x='96' y='120' text-anchor='middle' font-size='80' font-family='serif' fill='%23ffffff'%3EAK%3C/text%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%231a1a2e' rx='64'/%3E%3Ctext x='256' y='320' text-anchor='middle' font-size='200' font-family='serif' fill='%23ffffff'%3EAK%3C/text%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' fill='%23ffffff' rx='24'/%3E%3Ctext x='96' y='120' text-anchor='middle' font-size='80' font-family='serif' fill='%231a1a2e'%3EAK%3C/text%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Portfolio Home",
+      "short_name": "Home",
+      "description": "View portfolio homepage",
+      "url": "/",
+      "icons": [{ "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ffffff' d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E", "sizes": "96x96" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 640'%3E%3Crect width='320' height='640' fill='%231a1a2e'/%3E%3Ctext x='160' y='320' text-anchor='middle' font-size='40' fill='%23ffffff'%3EPortfolio%3C/text%3E%3C/svg%3E",
+      "sizes": "320x640",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 320'%3E%3Crect width='640' height='320' fill='%231a1a2e'/%3E%3Ctext x='320' y='180' text-anchor='middle' font-size='40' fill='%23ffffff'%3EPortfolio%3C/text%3E%3C/svg%3E",
+      "sizes": "640x320",
+      "type": "image/svg+xml", 
+      "form_factor": "wide"
+    }
+  ]
+}

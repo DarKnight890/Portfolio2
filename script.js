@@ -36,12 +36,55 @@ class PortfolioManager {
     init() {
         this.cacheElements();
         this.setupEventListeners();
+        this.validateAndInitializeSettings();
         this.applySettings();
         this.initializeAnimations();
         this.initializeScrollEffects();
         this.initializeMobileOptimizations();
         console.log('🚀 Portfolio initialized successfully!');
         console.log(`📱 Mobile: ${this.isMobile}, Android: ${this.isAndroid}`);
+        console.log('⚙️ Settings functionality: ACTIVE');
+    }
+
+    validateAndInitializeSettings() {
+        // Ensure all settings elements exist and are functional
+        const requiredElements = [
+            'settingsBtn', 'settingsPanel', 'closeSettings',
+            'themeSwitch', 'decreaseFont', 'increaseFont', 'languageSelect'
+        ];
+        
+        const missingElements = [];
+        requiredElements.forEach(elementId => {
+            if (!this.elements[elementId]) {
+                missingElements.push(elementId);
+            }
+        });
+        
+        if (missingElements.length > 0) {
+            console.warn('⚠️ Missing settings elements:', missingElements);
+        } else {
+            console.log('✅ All settings elements found and ready');
+        }
+        
+        // Initialize default values
+        this.updateSettingsDisplay();
+    }
+
+    updateSettingsDisplay() {
+        // Update theme switch
+        if (this.elements.themeSwitch) {
+            this.elements.themeSwitch.checked = this.settings.theme === 'light';
+        }
+        
+        // Update font size display
+        if (this.elements.currentSize) {
+            this.elements.currentSize.textContent = `${this.settings.fontSize}px`;
+        }
+        
+        // Update language selection
+        if (this.elements.languageSelect) {
+            this.elements.languageSelect.value = this.settings.language;
+        }
     }
 
     // ============ MOBILE OPTIMIZATIONS ============
@@ -105,16 +148,90 @@ class PortfolioManager {
     }
 
     setupAndroidSpecific() {
-        // Android-specific optimizations
+        // Enhanced Android-specific optimizations
         document.body.classList.add('android-device');
+        
+        // Detect specific Android browsers
+        const ua = navigator.userAgent.toLowerCase();
+        if (ua.includes('chrome')) document.body.classList.add('android-chrome');
+        if (ua.includes('firefox')) document.body.classList.add('android-firefox');
+        if (ua.includes('samsung')) document.body.classList.add('android-samsung');
+        
+        // Prevent zoom on input focus
+        const viewport = document.querySelector('meta[name="viewport"]');
+        if (viewport) {
+            viewport.setAttribute('content', 
+                'width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover, maximum-scale=1.0');
+        }
+
+        // Optimize touch events for better performance
+        document.addEventListener('touchstart', () => {}, { passive: true });
+        document.addEventListener('touchmove', () => {}, { passive: true });
+        
+        // Enhanced keyboard handling
+        this.handleAndroidKeyboard();
+        
+        // Fix address bar issues
+        this.fixAndroidAddressBar();
+        
+        // Add haptic feedback simulation
+        this.addHapticFeedback();
+    }
+
+    handleAndroidKeyboard() {
+        const initialHeight = window.innerHeight;
+        
+        window.addEventListener('resize', () => {
+            const currentHeight = window.innerHeight;
+            const heightDifference = initialHeight - currentHeight;
+            
+            if (heightDifference > 150) {
+                // Keyboard is open
+                document.body.classList.add('keyboard-visible');
+                
+                // Auto-close settings when keyboard opens
+                if (this.elements.settingsPanel?.classList.contains('active')) {
+                    this.toggleSettingsPanel(false);
+                }
+            } else {
+                // Keyboard is closed
+                document.body.classList.remove('keyboard-visible');
+            }
+        });
+    }
+
+    fixAndroidAddressBar() {
+        // Multiple techniques to handle Android Chrome address bar
+        setTimeout(() => {
+            window.scrollTo(0, 1);
+            window.scrollTo(0, 0);
+        }, 100);
+        
+        // Force reflow
+        document.body.style.height = '100vh';
+        setTimeout(() => {
+            document.body.style.height = '';
+        }, 200);
+    }
+
+    addHapticFeedback() {
+        // Simulate haptic feedback for better Android UX
+        const addVibration = (pattern = [10]) => {
+            if (navigator.vibrate) {
+                navigator.vibrate(pattern);
+            }
+        };
+
+        // Add vibration to interactive elements
+        const interactiveElements = document.querySelectorAll('.settings-btn, .font-btn, .theme-switch, .expand-btn');
+        interactiveElements.forEach(el => {
+            el.addEventListener('click', () => {
+                addVibration([10]);
+            });
+        });
         
         // Improve scrolling on Android
         document.body.style.overscrollBehavior = 'contain';
-        
-        // Fix Android Chrome address bar height changes
-        if (/Chrome/i.test(navigator.userAgent) && this.isAndroid) {
-            document.body.classList.add('android-chrome');
-        }
     }
 
     optimizePerformance() {

@@ -7,13 +7,36 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    /* Android optimizations */
+    /* Android browser optimizations */
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    /* Enhanced Android support */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /* Android scroll optimization */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+}
+
+/* Enhanced Android touch feedback */
+*:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+/* Android browser specific touch improvements */
+@media screen and (-webkit-min-device-pixel-ratio: 1.5) {
+    * {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
 }
 
 /* Allow text selection for content */
@@ -334,6 +357,17 @@ body::before {
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
     position: relative;
     overflow: hidden;
+    /* Enhanced Android touch support */
+    min-width: 48px;
+    min-height: 48px;
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* Android tap feedback */
+    -webkit-tap-highlight-color: rgba(102, 126, 234, 0.3);
 }
 
 .settings-btn::before {
@@ -389,6 +423,13 @@ body::before {
     transition: all var(--transition-slow) var(--easing-bounce);
     z-index: 999;
     position: relative;
+    /* Enhanced Android support */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+    -webkit-touch-callout: none;
+    /* Android keyboard handling */
+    max-height: min(600px, calc(100vh - 120px));
 }
 
 .settings-panel::before {
@@ -792,6 +833,14 @@ body::before {
     display: inline-block;
     width: 60px;
     height: 34px;
+    /* Enhanced Android touch support */
+    min-width: 60px;
+    min-height: 44px;
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* Settings Controls Container */
@@ -1291,6 +1340,17 @@ input:checked + .slider:before {
     transition: all var(--transition-fast);
     font-size: 12px;
     font-weight: 600;
+    /* Enhanced Android touch support */
+    min-width: 44px;
+    min-height: 44px;
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(102, 126, 234, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .font-btn:hover {
